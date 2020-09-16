@@ -50,3 +50,12 @@ with open(csvpath) as csvfile:
                 max_decrease = num     
 print(f"Greatest Increase in Profits: {increase_name} (${max_increase})")
 print(f"Greatest Decrease in Profits: {decrease_name} (${max_decrease})")
+
+with open('main.txt','w') as txt:
+    txt.write("Financial Analysis"+'\n')
+    txt.write("-----------------------------------"+'\n')
+    txt.write(f"Total Month: {total_months}"+'\n')
+    txt.write(f"Total: ${total}"+'\n')
+    txt.write(f"Average  Change: ${formated_average}"+'\n')
+    txt.write(f"Greatest Increase in Profits: {increase_name} (${max_increase})"+'\n')
+    txt.write(f"Greatest Decrease in Profits: {decrease_name} (${max_decrease})")

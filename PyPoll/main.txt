@@ -1,40 +1,9 @@
-# The total number of votes cast
-csvpath = os.path.join('', 'Resources', 'election_data.csv')
-with open(csvpath) as csvfile: 
-    csvreader = csv.reader(csvfile, delimiter=',')
-    lines = len(list(csvreader)) # https://www.kite.com/python/answers/how-to-count-the-number-of-lines-in-a-csv-file-in-python
-    total_votes= lines -1
-    print(f"Total Votes: {total_votes}")
-
-# A complete list of candidates who received votes
-candidate_list = []
-csvpath = os.path.join('', 'Resources', 'election_data.csv')
-with open(csvpath) as csvfile: 
-    csvreader = csv.reader(csvfile, delimiter=',')
-    csvheader = next(csvreader)
-    for row in csvreader:
-        if row[2] not in candidate_list: #https://thispointer.com/python-how-to-check-if-an-item-exists-in-list-search-by-value-or-condition/
-            candidate_list.append(row[2])
-    print(candidate_list)
-
-# The percentage of votes each candidate won
-# The total number of votes each candidate won
-candidate_list = ["Khan", "Correy", "Li", "O'Tooley"]
-counter = [0,0,0,0]
-pct = []
-csvpath = os.path.join('', 'Resources', 'election_data.csv')
-with open(csvpath) as csvfile: 
-    csvreader = csv.reader(csvfile, delimiter=',')
-    for row in csvreader:
-        if row[2] == candidate_list[0]:
-            counter[0] += 1
-        elif row[2] == candidate_list[1]:
-            counter[1] += 1
-        elif row[2] == candidate_list[2]:
-            counter[2] += 1
-        elif row[2] == candidate_list[3]:
-            counter[3] += 1
-    pct = [x/int(total_votes) for x in counter] #https://stackoverflow.com/questions/6645357/doing-math-to-a-list-in-python
-    pct = ["{:.3%}".format(x) for x in pct] #https://www.w3resource.com/python-exercises/string/python-data-type-string-exercise-36.php
-    for i in range(4):
-        print(f"{candidate_list[i]}: {pct[i]} ({counter[i]})")
+Election Results
+-----------------------------------
+Total Votes: 3521001Khan: 63.000% (2218231)
+Correy: 20.000% (704200)
+Li: 14.000% (492940)
+O'Tooley: 3.000% (105630)
+-----------------------------------
+Winner: Khan
+-----------------------------------

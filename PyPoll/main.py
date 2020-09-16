@@ -51,3 +51,13 @@ max_index = pct.index(max_pct) #https://www.programiz.com/python-programming/met
 winner_name = candidate_list[max_index]
 print(f"Winner: {winner_name}")
 print("-----------------------------------")
+
+with open('main.txt','w') as txt:
+    txt.write("Election Results"+'\n')
+    txt.write("-----------------------------------"+'\n')
+    txt.write(f"Total Votes: {total_votes}")
+    for i in range(4):
+        txt.write(f"{candidate_list[i]}: {pct[i]} ({counter[i]})"+'\n')
+    txt.write(f"-----------------------------------"+'\n')
+    txt.write(f"Winner: {winner_name}"+'\n')
+    txt.write("-----------------------------------")

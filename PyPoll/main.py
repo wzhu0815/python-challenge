@@ -14,7 +14,6 @@ with open(csvpath) as csvfile:
 
 # A complete list of candidates who received votes
 candidate_list = []
-csvpath = os.path.join('', 'Resources', 'election_data.csv')
 with open(csvpath) as csvfile: 
     csvreader = csv.reader(csvfile, delimiter=',')
     csvheader = next(csvreader)
@@ -26,7 +25,6 @@ with open(csvpath) as csvfile:
 # The total number of votes each candidate won
 counter = [0,0,0,0]
 pct = []
-csvpath = os.path.join('', 'Resources', 'election_data.csv')
 with open(csvpath) as csvfile: 
     csvreader = csv.reader(csvfile, delimiter=',')
     for row in csvreader:
@@ -51,6 +49,7 @@ max_index = pct.index(max_pct) #https://www.programiz.com/python-programming/met
 winner_name = candidate_list[max_index]
 print(f"Winner: {winner_name}")
 print("-----------------------------------")
+<<<<<<< HEAD
 
 with open('main.txt','w') as txt:
     txt.write("Election Results"+'\n')
@@ -61,3 +60,5 @@ with open('main.txt','w') as txt:
     txt.write(f"-----------------------------------"+'\n')
     txt.write(f"Winner: {winner_name}"+'\n')
     txt.write("-----------------------------------")
+=======
+>>>>>>> 8337238cfb916e18f729409d8ee8b7674597ba73

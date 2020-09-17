@@ -3,24 +3,21 @@ import csv
 #Format
 print("Election Results")
 print("-----------------------------------")
+csvpath = os.path.join('', 'Resources', 'election_data.csv') 
 
 # The total number of votes cast
-csvpath = os.path.join('', 'Resources', 'election_data.csv')
-with open(csvpath) as csvfile: 
-    csvreader = csv.reader(csvfile, delimiter=',')
-    lines = len(list(csvreader)) # https://www.kite.com/python/answers/how-to-count-the-number-of-lines-in-a-csv-file-in-python
-    total_votes= lines -1
-    print(f"Total Votes: {total_votes}")
-
 # A complete list of candidates who received votes
+total_votes = 0
 candidate_list = []
 with open(csvpath) as csvfile: 
     csvreader = csv.reader(csvfile, delimiter=',')
     csvheader = next(csvreader)
     for row in csvreader:
+        total_votes += 1
         if row[2] not in candidate_list: #https://thispointer.com/python-how-to-check-if-an-item-exists-in-list-search-by-value-or-condition/
             candidate_list.append(row[2])
-
+print(f"Total Votes: {total_votes}")
+print("-----------------------------------")
 # The percentage of votes each candidate won
 # The total number of votes each candidate won
 counter = [0,0,0,0]
@@ -42,23 +39,21 @@ with open(csvpath) as csvfile:
         print(f"{candidate_list[i]}: {pct[i]} ({counter[i]})")
 print("-----------------------------------")
 
-
 # The winner of the election based on popular vote.
 max_pct = max(pct) #https://www.geeksforgeeks.org/python-program-to-find-largest-number-in-a-list/
 max_index = pct.index(max_pct) #https://www.programiz.com/python-programming/methods/list/index
 winner_name = candidate_list[max_index]
 print(f"Winner: {winner_name}")
 print("-----------------------------------")
-<<<<<<< HEAD
 
+# txt file
 with open('main.txt','w') as txt:
     txt.write("Election Results"+'\n')
     txt.write("-----------------------------------"+'\n')
-    txt.write(f"Total Votes: {total_votes}")
+    txt.write(f"Total Votes: {total_votes}"+'\n')
+    txt.write("-----------------------------------"+'\n')
     for i in range(4):
         txt.write(f"{candidate_list[i]}: {pct[i]} ({counter[i]})"+'\n')
     txt.write(f"-----------------------------------"+'\n')
     txt.write(f"Winner: {winner_name}"+'\n')
     txt.write("-----------------------------------")
-=======
->>>>>>> 8337238cfb916e18f729409d8ee8b7674597ba73

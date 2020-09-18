@@ -20,15 +20,15 @@ with open(csvpath) as csvfile:
         total_months += 1
         total = total + int(row[1])       
         lst.append(row[1])
-        num = int(row[1])
-        if num > 0:
-            if num > max_increase:
-                increase_name = row[0]
-                max_increase = num
-        elif num < 0:
-            if num < max_decrease:
-                decrease_name = row[0]
-                max_decrease = num     
+        if len(lst) > 1:
+            change = int(lst[len(lst)-1])-int(lst[len(lst)-2])
+            if change > 0 and change > max_increase:
+                    increase_name = row[0]
+                    max_increase = change
+            elif change < 0 and change < max_decrease:
+                    decrease_name = row[0]
+                    max_decrease = change  
+
     average = (int(lst[total_months-1])-int(lst[0]))/(total_months-1)
     formated_average = "{:.2f}".format(average) #https://www.kite.com/python/answers/how-to-print-a-float-with-two-decimal-places-in-python
     print(f"Total Month: {total_months}")

@@ -31,7 +31,7 @@ with open(csvpath) as csvfile:
 
     average = (int(lst[total_months-1])-int(lst[0]))/(total_months-1)
     formated_average = "{:.2f}".format(average) #https://www.kite.com/python/answers/how-to-print-a-float-with-two-decimal-places-in-python
-    print(f"Total Month: {total_months}")
+    print(f"Total Months: {total_months}")
     print(f"Total: ${total}")
     print(f"Average  Change: ${formated_average}")
     print(f"Greatest Increase in Profits: {increase_name} (${max_increase})")

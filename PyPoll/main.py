@@ -1,10 +1,10 @@
 import os
 import csv
+import numpy as np
 #Format
 print("Election Results")
 print("-----------------------------------")
-csvpath = os.path.join('', 'Resources', 'election_data.csv') 
-
+csvpath = os.path.join('Resources', 'election_data.csv') 
 # The total number of votes cast
 # A complete list of candidates who received votes
 total_votes = 0
@@ -18,26 +18,32 @@ with open(csvpath) as csvfile:
             candidate_list.append(row[2])
 print(f"Total Votes: {total_votes}")
 print("-----------------------------------")
+
 # The percentage of votes each candidate won
 # The total number of votes each candidate won
-counter = [0,0,0,0]
+counter = np.zeros(len(candidate_list)) #https://numpy.org/doc/stable/reference/generated/numpy.zeros.html
 pct = []
 with open(csvpath) as csvfile: 
     csvreader = csv.reader(csvfile, delimiter=',')
     for row in csvreader:
-        if row[2] == candidate_list[0]:
-            counter[0] += 1
-        elif row[2] == candidate_list[1]:
-            counter[1] += 1
-        elif row[2] == candidate_list[2]:
-            counter[2] += 1
-        elif row[2] == candidate_list[3]:
-            counter[3] += 1
+        for i in range(len(candidate_list)):
+            if row[2] == candidate_list[i]:
+                counter[i] += 1
+        #old code below:
+        # if row[2] == candidate_list[0]:
+        #     counter[0] += 1
+        # elif row[2] == candidate_list[1]:
+        #     counter[1] += 1
+        # elif row[2] == candidate_list[2]:
+        #     counter[2] += 1
+        # elif row[2] == candidate_list[3]:
+        #     counter[3] += 1
     pct = [x/int(total_votes) for x in counter] #https://stackoverflow.com/questions/6645357/doing-math-to-a-list-in-python
     pct = ["{:.3%}".format(x) for x in pct] #https://www.w3resource.com/python-exercises/string/python-data-type-string-exercise-36.php
-    for i in range(4):
-        print(f"{candidate_list[i]}: {pct[i]} ({counter[i]})")
+    for i in range(len(candidate_list)):
+        print(f"{candidate_list[i]}: {pct[i]} ({int(counter[i])})")
 print("-----------------------------------")
+
 
 # The winner of the election based on popular vote.
 max_pct = max(pct) #https://www.geeksforgeeks.org/python-program-to-find-largest-number-in-a-list/
@@ -52,8 +58,8 @@ with open('main.txt','w') as txt:
     txt.write("-----------------------------------"+'\n')
     txt.write(f"Total Votes: {total_votes}"+'\n')
     txt.write("-----------------------------------"+'\n')
-    for i in range(4):
-        txt.write(f"{candidate_list[i]}: {pct[i]} ({counter[i]})"+'\n')
+    for i in range(len(candidate_list)):
+        txt.write(f"{candidate_list[i]}: {pct[i]} ({int(counter[i])})"+'\n')
     txt.write(f"-----------------------------------"+'\n')
     txt.write(f"Winner: {winner_name}"+'\n')
     txt.write("-----------------------------------")
